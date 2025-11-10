@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${team.id} ? 'Редактировать команду' : 'Добавить команду'"></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-4">
+    <h1 th:text="${team.id} ? 'Редактировать команду' : 'Добавить команду'"></h1>
+
+    <form th:action="@{/teams/save}" th:object="${team}" method="post">
+        <input type="hidden" th:field="*{id}"/>
+
+        <div class="mb-3">
+            <label for="name" class="form-label">Название команды:</label>
+            <input type="text" class="form-control" id="name" th:field="*{name}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="city" class="form-label">Город:</label>
+            <input type="text" class="form-control" id="city" th:field="*{city}">
+        </div>
+
+        <div class="mb-3">
+            <label for="stadium" class="form-label">Стадион:</label>
+            <input type="text" class="form-control" id="stadium" th:field="*{stadium}">
+        </div>
+
+        <div class="mb-3">
+            <label for="coach" class="form-label">Тренер:</label>
+            <input type="text" class="form-control" id="coach" th:field="*{coach}">
+        </div>
+
+        <button type="submit" class="btn btn-success">Сохранить</button>
+        <a th:href="@{/teams}" class="btn btn-secondary">Отмена</a>
+    </form>
+</div>
+</body>
+</html>
